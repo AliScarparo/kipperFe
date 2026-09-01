@@ -1,0 +1,17 @@
+.app-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.stage-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.stage-layer.stage-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
