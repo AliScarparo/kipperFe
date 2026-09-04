@@ -35,8 +35,8 @@ jobs:
 
       - name: Tag e Push da Imagem
         run: |
-          docker tag fiecpa2026 ${{ secrets.DOCKER_USERNAME }}/fiecpa2026:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/fiecpa2026:latest
+          docker tag fiecpa2026 ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
 
   # Job 3: Rodando na AWS
   deploy-ec2:
