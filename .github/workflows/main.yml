@@ -42,9 +42,7 @@ jobs:
   deploy-ec2:
     runs-on: self-hosted
     needs: docker-build
-    defaults:
-      run:
-        shell: bash
+    
     steps:
       - name: Forçar Pull da imagem nova (ignora cache local)
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
