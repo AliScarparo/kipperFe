@@ -37,26 +37,27 @@ jobs:
         run: |
           docker tag fiecpa2026 ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
-
+          
   # Job 3: Rodando na AWS
   deploy-ec2:
     runs-on: self-hosted
     needs: docker-build
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Forçar Pull da imagem nova (ignora cache local)
-        # O comando pull garante que a imagem no host seja atualizada
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
-
+  
       - name: Parar e remover container antigo
-        # Usamos || true para que o workflow não quebre se o container não existir
         run: |
           docker stop react-app || true
           docker rm react-app || true
-
+  
       - name: Rodar novo container com flag de pull
         run: |
           docker run -d \
             --pull always \
             --name react-app \
-            -p 3000:3000\
+            -p 3000:3000 \
             ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
