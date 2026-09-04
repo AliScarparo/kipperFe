@@ -48,17 +48,13 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
   
       - name: Parar e remover container antigo
-        run: docker stop react-app 
         continue-on-error: true
+        run: docker stop react-app 
 
       - name: Parar e remover container antigo
-        run: docker rm react-app 
         continue-on-error: true
+        run: docker rm react-app 
   
       - name: Rodar novo container com flag de pull
-        run: |
-          docker run -d \
-            --pull always \
-            --name react-app \
-            -p 3000:3000 \
-            ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
+        run: docker run -d --pull always --name react-app -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/kipperfe:latest
+
